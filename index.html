@@ -18,7 +18,7 @@
   <body>
     <div class="s-container">
       <header>
-        <input type="text" />
+        <input type="text" id="search-term" />
         <button id="search">
           <i class="fas fa-magnifying-glass"></i>
         </button>
@@ -28,6 +28,14 @@
         <ul class="fav-meals" id="favContainer"></ul>
       </div>
       <div class="meals" id="meals"></div>
+    </div>
+    <div class="meal-infor-container hidden" id="mealPopup">
+      <div class="meal-infor" id="meal-infor">
+        <button id="close-popup"><i class="fa-solid fa-x"></i></button>
+        <div class="meal-info" id="meal-info">
+        </div>
+        </ul>
+      </div>
     </div>
   </body>
 </html>

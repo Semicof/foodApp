@@ -1,5 +1,10 @@
-const meals = document.getElementById("meals");
+const mealEls = document.getElementById("meals");
 const favContainer = document.getElementById("favContainer");
+const searchTerm = document.getElementById("search-term");
+const search = document.getElementById("search");
+const mealPopup=document.getElementById("mealPopup");
+const popupCloseBtn=document.getElementById("close-popup");
+const mealInfoEl=document.getElementById("meal-info");
 // localStorage.clear();
 
 getRandomMeal();
@@ -22,9 +27,13 @@ async function getMealById(id) {
 }
 
 async function getMealBySearch(name) {
-  const meals = await fetch(
+  const res = await fetch(
     "https://www.themealdb.com/api/json/v1/1/search.php?s=" + name
   );
+  const resData = await res.json();
+  const meal = resData.meals;
+
+  return meal;
 }
 
 function addRMeal(mData, v = false) {
@@ -54,7 +63,11 @@ function addRMeal(mData, v = false) {
     fetchFavMeals();
   });
 
-  meals.appendChild(meal);
+  meal.addEventListener("click",()=>{
+    showMI(mData);
+  })
+
+  mealEls.appendChild(meal);
 }
 
 function updateLS(mealId) {
@@ -103,6 +116,56 @@ function addFMeal(mData) {
     removeLS(mData.idMeal);
     fetchFavMeals();
   });
-
+  favMeal.addEventListener("click",()=>{
+    showMI(mData);
+  })
   favContainer.appendChild(favMeal);
+}
+
+search.addEventListener("click", async () => {
+  mealEls.innerHTML="";
+  const input = searchTerm.value;
+
+  const meals = await getMealBySearch(input);
+
+  if (meals) {
+    meals.forEach((meal) => {
+      addRMeal(meal);
+    });
+  }
+});
+
+popupCloseBtn.addEventListener("click",()=>{
+  mealPopup.classList.add("hidden");
+})
+
+function showMI(mData)
+{
+  mealInfoEl.innerHTML="";
+  const mealEl=document.createElement("div");
+  const ingredients=[];
+  for(let i=1;i<=20;i++)
+  {
+    if(mData["strIngredient"+i])
+    {
+      ingredients.push(`${mData["strIngredient"+i]} - ${mData["strMeasure"+i]}`);
+    }
+    else break;
+  }
+
+  mealEl.innerHTML=`<h1 class="meal-name">${mData.strMeal}</h1>
+  <img src="${mData.strMealThumb}" alt="${mData.strMeal}" />
+  <p>
+  ${mData.strInstructions}
+  </p>
+  <br>
+  <h3>Ingredients:</h3>
+  <br>
+  <ul>
+    ${ingredients.map(ing=>`<li>${ing}</li>`).join('')}
+  </ul>
+  `
+  mealInfoEl.appendChild(mealEl);
+
+  mealPopup.classList.remove("hidden");
 }
