@@ -33,6 +33,11 @@ img {
   overflow: hidden;
 }
 
+.s-container h1{
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 header {
   padding: 1rem;
   display: flex;
