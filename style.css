@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,200&display=swap");
+
+body {
+  background-color: #9e8fb2;
+  background-image: linear-gradient(315deg, #9e8fb2 0%, #a7acd9 74%);
+  background-size: cover;
+  min-height: 100vh;
+  background-position: center center;
+  font-family: "Poppins", sans-serif;
+  color: #a29bfe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.s-container {
+  width: 400px;
+  background-color: #fdcb6e;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 0.3rem;
+  overflow: hidden;
+}
+
+header {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header input {
+  background-color: #eee;
+  border-radius: 2px;
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  overflow: hidden;
+}
+
+header button {
+  background-color: transparent;
+  padding-left: 0.5rem;
+  color: #9e8fb2;
+  font-size: 1.5rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+header button:hover {
+  color: #a29bfe;
+}
+
+.fav-container {
+  background-color: #ffeaa7;
+  padding: 1rem;
+  text-align: center;
+}
+
+.fav-meals {
+  display: flex;
+  padding-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.fav-meals li {
+  cursor: pointer;
+  position: relative;
+  margin: 5px;
+  width: 75px;
+}
+
+.fav-meals li .close-btn {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  border: none;
+  color: #30336b;
+}
+
+.fav-meals li:hover .close-btn {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.fav-meals li img {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1.5px solid #ffffff;
+  width: 70px;
+  height: 70px;
+}
+
+.fav-meals li span {
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 70px;
+}
+
+.meal {
+  border-radius: 2px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  margin: 0.5rem;
+  background-color: #ffeaa7;
+  overflow: hidden;
+}
+
+.meal-header {
+  position: relative;
+}
+
+.meal-header .random {
+  position: absolute;
+  padding: 0.25rem 0.45rem;
+  font-weight: bold;
+  background-color: #ffeaa7;
+  border-radius: 2px;
+}
+
+.meal-header img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.meal-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem;
+}
+
+.meal-body h4 {
+  margin: 0;
+}
+
+.meal-body .like-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #999;
+  cursor: pointer;
+}
+
+.meal-body .like-btn.active {
+  color: #d63031;
+}
